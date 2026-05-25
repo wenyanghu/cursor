@@ -20,5 +20,5 @@ npm run build        # production build
 - **Prisma 7** requires a driver adapter (`PrismaBetterSqlite3`) — you cannot just do `new PrismaClient()`. Every file that instantiates PrismaClient must pass `{ adapter }`.
 - The dev server is a **custom `server.ts`** (not `next dev`). It wraps Next.js with `http.createServer` to attach Socket.IO on the same port.
 - Database file is at `./dev.db` (relative to workspace root). The `.env` file sets `DATABASE_URL="file:./dev.db"`.
-- After cloning, you need to run `npx prisma migrate dev` and `npm run db:seed` to set up the database.
+- After cloning, run `npm ci`, then `npx prisma migrate deploy` (or `npm run db:migrate` for dev) and `npm run db:seed`. `postinstall` runs `prisma generate` automatically; generated client lives in `src/generated/prisma` (gitignored).
 - `"type": "module"` is set in `package.json` — all imports use ESM.
